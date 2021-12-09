@@ -11,7 +11,7 @@ const Post = (props: PostPropsType) => {
         <img src='https://99px.ru/sstorage/1/2012/06/image_10406120020582211120.gif'/>
         {props.message}
         <div>
-            <span>like</span> {props.likeCount}
+            <span>likes</span> {props.likeCount}
         </div>
     </div>
 }
