@@ -17,5 +17,17 @@
 }
 
 .messages .message {
-    color: white;
+    color: #494949;
+}
+
+.dialog {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-content: start;
+}
+
+.dialog img{
+    width: 50px;
+    heigth: 50px;
+    border-radius: 50%;
 }

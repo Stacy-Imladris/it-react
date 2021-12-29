@@ -1,3 +1,11 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.banner img {
+    width: 100%;
+}
+
+.avatar img {
+    width: 20%;
+}
