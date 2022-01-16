@@ -1,14 +1,11 @@
 import React from "react";
 import s from './Navbar.module.css';
-import {FriendType, SidebarType} from "../../redux/state";
-
-type SidebarPropsType = {
-    state: SidebarType
-}
+import {SidebarPropsType} from "./SidebarContainer";
+import {FriendType} from "../../redux/sidebar-reducer";
 
 export const Sidebar = (props: SidebarPropsType) => {
 
-    let friendElements = props.state.friends.map((f: FriendType) => {
+    let friendElements = props.sidebar.friends.map((f: FriendType) => {
         return (
             <div key={f.id}>
                 <div>
