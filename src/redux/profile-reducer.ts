@@ -1,4 +1,3 @@
-import {ActionsTypes} from "./store";
 import {UserPhotos} from "./users-reducer";
 
 const ADD_POST = 'ADD_POST'
@@ -34,9 +33,11 @@ const initialState = {
     profile: {} as null | ProfileType
 }
 
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC> | ReturnType<typeof setUserProfile>
+
 export type InitialStateType = typeof initialState
 
-const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost: PostType = {

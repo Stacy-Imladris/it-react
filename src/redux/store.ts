@@ -3,56 +3,56 @@ import dialogsReducer, {addMessageAC, ChangeNewMessageTextAC} from "./dialogs-re
 import sidebarReducer from "./sidebar-reducer";
 import {follow, setCurrentPage, setUsers, setUsersTotalCount, toggleIsFetching} from "./users-reducer";
 
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
     img: string
 }
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type FriendType = {
+type FriendType = {
     id: number
     name: string
     img: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
     profile: any
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     messageForNewMessage: string
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-export type SidebarType = {
+type SidebarType = {
     friends: Array<FriendType>
 }
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _onChange: () => void
     getState: () => RootStateType
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsTypes) => void
 }
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC> |
+type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC> |
     ReturnType<typeof addMessageAC> | ReturnType<typeof ChangeNewMessageTextAC> |
     ReturnType<typeof follow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setUsersTotalCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
 
-export const store: StoreType = {
+const store: StoreType = {
     _state: {
         profilePage: {
             messageForNewPost: '',
@@ -124,7 +124,9 @@ export const store: StoreType = {
         this._onChange = observer;
     },
     dispatch(action) {
+        // @ts-ignore
         this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // @ts-ignore
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._onChange()

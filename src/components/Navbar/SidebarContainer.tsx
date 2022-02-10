@@ -1,8 +1,8 @@
-import {RootStateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {Sidebar} from "./Sidebar";
 import {InitialStateType} from "../../redux/sidebar-reducer";
 import {Dispatch} from "redux";
+import {AppStateType} from "../../redux/redux-store";
 
 type MapStatePropsType = {
     sidebar: InitialStateType
@@ -11,7 +11,7 @@ type MapDispatchPropsType = {}
 
 export type SidebarPropsType = MapStatePropsType & MapDispatchPropsType
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         sidebar: state.sidebar
     }

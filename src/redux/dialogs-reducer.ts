@@ -1,5 +1,3 @@
-import {ActionsTypes} from "./store";
-
 const ADD_MESSAGE = 'ADD_MESSAGE'
 const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE_NEW_MESSAGE_TEXT'
 
@@ -43,9 +41,11 @@ const initialState = {
     ] as Array<MessageType>,
 }
 
+export type ActionTypes = ReturnType<typeof addMessageAC> | ReturnType<typeof ChangeNewMessageTextAC>
+
 export type InitialStateType = typeof initialState
 
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageType = {

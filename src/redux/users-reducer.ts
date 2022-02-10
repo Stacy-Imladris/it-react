@@ -1,5 +1,3 @@
-import {ActionsTypes} from "./store";
-
 const CHANGE_FOLLOW = 'CHANGE_FOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
@@ -27,9 +25,12 @@ const initialState = {
     isFetching: true
 }
 
+export type ActionTypes = ReturnType<typeof follow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setUsersTotalCount> | ReturnType<typeof toggleIsFetching>
+
 export type InitialStateType = typeof initialState
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case CHANGE_FOLLOW:
             return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: !u.followed} : u)}

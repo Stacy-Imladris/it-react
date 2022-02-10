@@ -1,5 +1,3 @@
-import {ActionsTypes} from "./store";
-
 export type FriendType = {
     id: number
     name: string
@@ -26,9 +24,11 @@ const initialState = {
     ] as Array<FriendType>
 }
 
+type ActionTypes = {}
+
 export type InitialStateType = typeof initialState
 
-const sidebarReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+const sidebarReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     return state;
 }
 
