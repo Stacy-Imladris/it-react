@@ -1,7 +1,7 @@
-import profileReducer, {addPostAC, ChangeNewTextAC} from "./profile-reducer";
+import profileReducer, {addPostAC, ChangeNewTextAC, setUserProfile} from "./profile-reducer";
 import dialogsReducer, {addMessageAC, ChangeNewMessageTextAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {followAC, setUsersAC} from "./users-reducer";
+import {follow, setCurrentPage, setUsers, setUsersTotalCount, toggleIsFetching} from "./users-reducer";
 
 export type PostType = {
     id: number
@@ -25,6 +25,7 @@ export type FriendType = {
 export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
+    profile: any
 }
 export type DialogsPageType = {
     messageForNewMessage: string
@@ -48,7 +49,8 @@ export type StoreType = {
 }
 export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC> |
     ReturnType<typeof addMessageAC> | ReturnType<typeof ChangeNewMessageTextAC> |
-    ReturnType<typeof followAC> | ReturnType<typeof setUsersAC>
+    ReturnType<typeof follow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setUsersTotalCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
 
 export const store: StoreType = {
     _state: {
@@ -60,6 +62,7 @@ export const store: StoreType = {
                 {id: 3, message: 'Blabla', likesCount: 17},
                 {id: 4, message: 'Dadada', likesCount: 99},
             ],
+            profile: null
         },
         dialogsPage: {
             messageForNewMessage: '',

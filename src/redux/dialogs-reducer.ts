@@ -1,7 +1,7 @@
 import {ActionsTypes} from "./store";
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT'
+const ADD_MESSAGE = 'ADD_MESSAGE'
+const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE_NEW_MESSAGE_TEXT'
 
 export type DialogType = {
     id: number
