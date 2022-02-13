@@ -1,5 +1,5 @@
-import profileReducer, {addPostAC, ChangeNewTextAC, setUserProfile} from "./profile-reducer";
-import dialogsReducer, {addMessageAC, ChangeNewMessageTextAC} from "./dialogs-reducer";
+import profileReducer, {addPost, changeNewText, setUserProfile} from "./profile-reducer";
+import dialogsReducer, {addMessage, changeNewMessageText} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {follow, setCurrentPage, setUsers, setUsersTotalCount, toggleIsFetching} from "./users-reducer";
 
@@ -47,8 +47,8 @@ type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsTypes) => void
 }
-type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC> |
-    ReturnType<typeof addMessageAC> | ReturnType<typeof ChangeNewMessageTextAC> |
+type ActionsTypes = ReturnType<typeof addPost> | ReturnType<typeof changeNewText> |
+    ReturnType<typeof addMessage> | ReturnType<typeof changeNewMessageText> |
     ReturnType<typeof follow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setUsersTotalCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
 

@@ -9,10 +9,10 @@ const Dialogs = (props: DialogsPropsType) => {
     const dialogsElements = props.dialogsPage.dialogs.map((d: DialogType) => <DialogItem key={d.id} name={d.name} id={d.id} img={d.img}/>);
     const messagesElements = props.dialogsPage.messages.map((m: MessageType) => <Message key={m.id} message={m.message} id={m.id}/>);
     const addMessage = () => {
-        props.sendMessage(props.dialogsPage.messageForNewMessage)
+        props.addMessage(props.dialogsPage.messageForNewMessage)
     }
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewMessageBody(e.currentTarget.value)
+        props.changeNewMessageText(e.currentTarget.value)
     }
 
     return (

@@ -41,7 +41,7 @@ const initialState = {
     ] as Array<MessageType>,
 }
 
-export type ActionTypes = ReturnType<typeof addMessageAC> | ReturnType<typeof ChangeNewMessageTextAC>
+export type ActionTypes = ReturnType<typeof addMessage> | ReturnType<typeof changeNewMessageText>
 
 export type InitialStateType = typeof initialState
 
@@ -63,9 +63,9 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionTy
     }
 }
 
-export const addMessageAC = (messageText: string) =>
+export const addMessage = (messageText: string) =>
     ({type: ADD_MESSAGE, messageForNewMessage: messageText}) as const
-export const ChangeNewMessageTextAC = (newMessage: string) =>
+export const changeNewMessageText = (newMessage: string) =>
     ({type: CHANGE_NEW_MESSAGE_TEXT, newTextMessage: newMessage}) as const
 
 export default dialogsReducer;

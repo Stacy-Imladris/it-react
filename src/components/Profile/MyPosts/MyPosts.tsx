@@ -9,7 +9,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         props.addPost(props.messageForNewPost)
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        props.changeNewText(e.currentTarget.value)
     }
 
     return (

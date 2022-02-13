@@ -30,10 +30,10 @@ const initialState = {
         {id: 3, message: 'Blabla', likesCount: 17},
         {id: 4, message: 'Dadada', likesCount: 99},
     ] as Array<PostType>,
-    profile: {} as null | ProfileType
+    profile: null as null | ProfileType
 }
 
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC> | ReturnType<typeof setUserProfile>
+export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof changeNewText> | ReturnType<typeof setUserProfile>
 
 export type InitialStateType = typeof initialState
 
@@ -50,15 +50,16 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
         case CHANGE_NEW_TEXT:
             return {...state, messageForNewPost: action.newText}
         case SET_USER_PROFILE:
+            debugger
             return {...state, profile: action.profile}
         default:
             return state;
     }
 }
 
-export const addPostAC = (postText: string) =>
+export const addPost = (postText: string) =>
     ({type: ADD_POST, messageForNewPost: postText}) as const
-export const ChangeNewTextAC = (newText: string) =>
+export const changeNewText = (newText: string) =>
     ({type: CHANGE_NEW_TEXT, newText: newText}) as const
 export const setUserProfile = (profile: any) =>
     ({type: SET_USER_PROFILE, profile}) as const
