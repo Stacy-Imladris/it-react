@@ -1,8 +1,5 @@
 import {UserPhotos} from "./users-reducer";
-
-const ADD_POST = 'ADD_POST'
-const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
+import {InferActionTypes} from "./redux-store";
 
 export type PostType = {
     id: number
@@ -30,16 +27,16 @@ const initialState = {
         {id: 3, message: 'Blabla', likesCount: 17},
         {id: 4, message: 'Dadada', likesCount: 99},
     ] as Array<PostType>,
-    profile: null as null | ProfileType
+    profile: null as null | ProfileType,
 }
 
-export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof changeNewText> | ReturnType<typeof setUserProfile>
+type ActionTypes = InferActionTypes<typeof actions>
 
 export type InitialStateType = typeof initialState
 
 const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_POST: {
+        case 'ADD_POST': {
             const newPost: PostType = {
                 id: new Date().getTime(),
                 message: action.messageForNewPost,
@@ -47,21 +44,19 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
             };
             return {...state, messageForNewPost: '', posts: [...state.posts, newPost]}
         }
-        case CHANGE_NEW_TEXT:
+        case 'CHANGE_NEW_TEXT':
             return {...state, messageForNewPost: action.newText}
-        case SET_USER_PROFILE:
-            debugger
+        case 'SET_USER_PROFILE':
             return {...state, profile: action.profile}
         default:
             return state;
     }
 }
 
-export const addPost = (postText: string) =>
-    ({type: ADD_POST, messageForNewPost: postText}) as const
-export const changeNewText = (newText: string) =>
-    ({type: CHANGE_NEW_TEXT, newText: newText}) as const
-export const setUserProfile = (profile: any) =>
-    ({type: SET_USER_PROFILE, profile}) as const
+export const actions = {
+    addPost: (postText: string) => ({type: 'ADD_POST', messageForNewPost: postText} as const),
+    changeNewText: (newText: string) => ({type: 'CHANGE_NEW_TEXT', newText: newText} as const),
+    setUserProfile: (profile: any) => ({type: 'SET_USER_PROFILE', profile} as const),
+}
 
 export default profileReducer;

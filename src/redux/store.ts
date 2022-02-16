@@ -1,8 +1,4 @@
-import profileReducer, {addPost, changeNewText, setUserProfile} from "./profile-reducer";
-import dialogsReducer, {addMessage, changeNewMessageText} from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
-import {follow, setCurrentPage, setUsers, setUsersTotalCount, toggleIsFetching} from "./users-reducer";
-
+/*
 type PostType = {
     id: number
     message: string
@@ -131,4 +127,5 @@ const store: StoreType = {
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._onChange()
     },
-}
+}*/
+export {}

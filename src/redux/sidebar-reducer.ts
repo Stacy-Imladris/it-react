@@ -21,7 +21,7 @@ const initialState = {
             name: 'Tanya',
             img: 'https://ae01.alicdn.com/kf/HTB1TiyBQIfpK1RjSZFOq6y6nFXa0/HOMFUN-%D0%BF%D0%BE%D0%BB%D0%BD%D1%8B%D0%B9-%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9-%D0%BA%D1%80%D1%83%D0%B3%D0%BB%D1%8B%D0%B9-%D0%B4%D1%80%D0%B5%D0%BB%D1%8C-5D-DIY-%D0%90%D0%BB%D0%BC%D0%B0%D0%B7%D0%BD%D0%B0%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%B0-%D0%91%D0%B0%D0%B1%D0%BE%D1%87%D0%BA%D0%B0-%D0%A4%D0%B5%D1%8F-3D-%D0%90%D0%BB%D0%BC%D0%B0%D0%B7%D0%BD%D0%B0%D1%8F-%D0%92%D1%8B%D1%88%D0%B8%D0%B2%D0%BA%D0%B0-%D0%BA%D1%80%D0%B5%D1%81%D1%82%D0%BE%D0%BC-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B8%D0%B9.jpg_640x640.jpg'
         },
-    ] as Array<FriendType>
+    ] as Array<FriendType>,
 }
 
 type ActionTypes = {}

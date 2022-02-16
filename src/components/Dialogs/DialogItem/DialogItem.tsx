@@ -8,7 +8,7 @@ export type DialogItemPropsType = {
     img: string
 }
 
-const DialogItem = (props: DialogItemPropsType) => {
+export const DialogItem = (props: DialogItemPropsType) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
             <div>
@@ -20,5 +20,3 @@ const DialogItem = (props: DialogItemPropsType) => {
         </div>
     )
 }
-
-export default DialogItem;

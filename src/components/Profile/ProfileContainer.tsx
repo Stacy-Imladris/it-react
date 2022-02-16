@@ -3,14 +3,16 @@ import Profile from "./Profile";
 import axios from "axios";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {ProfileType, setUserProfile} from "../../redux/profile-reducer";
+import {actions, ProfileType} from "../../redux/profile-reducer";
 import {Params} from "react-router-dom";
 
 type PropsType = {
     match?: { userId: string } | Params<string>
 }
 
-class ProfileContainer extends React.Component<ProfilePropsType & PropsType> {
+type ProfileContainerPropsType = ProfilePropsType & PropsType
+
+class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
         let userId = Number(this.props.match?.userId)
@@ -43,4 +45,5 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {setUserProfile})(ProfileContainer);
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
+    setUserProfile: actions.setUserProfile})(ProfileContainer);

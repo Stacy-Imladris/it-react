@@ -7,5 +7,3 @@ export function ProfileWithParam() {
 
     return <ProfileContainer match={match}/>
 }
-
-export default ProfileWithParam;

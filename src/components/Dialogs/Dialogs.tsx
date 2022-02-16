@@ -1,11 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
 import {DialogType, MessageType} from "../../redux/dialogs-reducer";
 import {DialogsPropsType} from "./DialogsContainer";
 
-const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs = (props: DialogsPropsType) => {
     const dialogsElements = props.dialogsPage.dialogs.map((d: DialogType) => <DialogItem key={d.id} name={d.name} id={d.id} img={d.img}/>);
     const messagesElements = props.dialogsPage.messages.map((m: MessageType) => <Message key={m.id} message={m.message} id={m.id}/>);
     const addMessage = () => {
@@ -36,5 +36,3 @@ const Dialogs = (props: DialogsPropsType) => {
         </div>
     )
 }
-
-export default Dialogs;

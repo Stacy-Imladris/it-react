@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
+import {Navbar} from "./components/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import ProfileWithParam from "./components/Profile/ProfileWithParam";
+import {ProfileWithParam} from "./components/Profile/ProfileWithParam";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 type AppPropsType = {}
 
@@ -14,7 +14,7 @@ const App = (props: AppPropsType) => {
 
     return (
         <div className='app-wrapper'>
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
@@ -27,7 +27,6 @@ const App = (props: AppPropsType) => {
         </div>
     );
 }
-
 
 export default App;
 

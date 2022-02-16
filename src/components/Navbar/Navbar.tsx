@@ -5,7 +5,7 @@ import {SidebarContainer} from "./SidebarContainer";
 
 type NavbarPropsType = {}
 
-const Navbar = (props: NavbarPropsType) => {
+export const Navbar = (props: NavbarPropsType) => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
@@ -32,5 +32,3 @@ const Navbar = (props: NavbarPropsType) => {
         </nav>
     )
 }
-
-export default Navbar;
