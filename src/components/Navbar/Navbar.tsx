@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 import s from './Navbar.module.css';
 import {SidebarContainer} from "./SidebarContainer";
 
-type NavbarPropsType = {}
-
-export const Navbar = (props: NavbarPropsType) => {
+export const Navbar = () => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>

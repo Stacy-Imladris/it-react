@@ -1,5 +1,6 @@
 import {UserPhotos} from "./users-reducer";
-import {InferActionTypes} from "./redux-store";
+import {AppThunk, InferActionTypes} from "./redux-store";
+import {profileAPI} from "../api/api";
 
 export type PostType = {
     id: number
@@ -30,11 +31,11 @@ const initialState = {
     profile: null as null | ProfileType,
 }
 
-type ActionTypes = InferActionTypes<typeof actions>
+export type ProfileActionTypes = InferActionTypes<typeof actions>
 
 export type InitialStateType = typeof initialState
 
-const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+const profileReducer = (state: InitialStateType = initialState, action: ProfileActionTypes): InitialStateType => {
     switch (action.type) {
         case 'ADD_POST': {
             const newPost: PostType = {
@@ -57,6 +58,14 @@ export const actions = {
     addPost: (postText: string) => ({type: 'ADD_POST', messageForNewPost: postText} as const),
     changeNewText: (newText: string) => ({type: 'CHANGE_NEW_TEXT', newText: newText} as const),
     setUserProfile: (profile: any) => ({type: 'SET_USER_PROFILE', profile} as const),
+}
+
+export const getUserProfile = (userId: number): AppThunk => {
+    return (dispatch) => {
+        profileAPI.getProfile(userId).then(data => {
+            dispatch(actions.setUserProfile(data))
+        })
+    }
 }
 
 export default profileReducer;

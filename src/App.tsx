@@ -7,11 +7,9 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {ProfileWithParam} from "./components/Profile/ProfileWithParam";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {Login} from "./components/Login/Login";
 
-type AppPropsType = {}
-
-const App = (props: AppPropsType) => {
-
+const App = () => {
     return (
         <div className='app-wrapper'>
             <HeaderContainer/>
@@ -22,10 +20,11 @@ const App = (props: AppPropsType) => {
                     <Route path='/profile' element={<ProfileContainer />}/>
                     <Route path='/profile/:userId' element={<ProfileWithParam/>}/>
                     <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/login' element={<Login/>}/>
                 </Routes>
             </div>
         </div>
-    );
+    )
 }
 
 export default App;

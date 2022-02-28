@@ -24,11 +24,11 @@ const initialState = {
     ] as Array<FriendType>,
 }
 
-type ActionTypes = {}
+export type SidebarActionTypes = {}
 
 export type InitialStateType = typeof initialState
 
-const sidebarReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+const sidebarReducer = (state: InitialStateType = initialState, action: SidebarActionTypes): InitialStateType => {
     return state;
 }
 
