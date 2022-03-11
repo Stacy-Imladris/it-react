@@ -4,6 +4,8 @@ import {actions, follow, getUsers, getUsersOnPage, unfollow, UserType} from "../
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
@@ -79,5 +81,8 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }*/
 
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
-    follow, unfollow, setCurrentPage: actions.setCurrentPage, getUsers, getUsersOnPage})(UsersContainer);
+export default compose<React.ComponentType>(
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
+        follow, unfollow, setCurrentPage: actions.setCurrentPage, getUsers, getUsersOnPage}),
+    withAuthRedirect
+)(UsersContainer)
