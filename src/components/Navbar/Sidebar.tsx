@@ -9,7 +9,7 @@ export const Sidebar = (props: SidebarPropsType) => {
         return (
             <div key={f.id}>
                 <div>
-                    <img src={f.img}/>
+                    <img src={f.img} alt={''}/>
                 </div>
                 <div>
                     {f.name}

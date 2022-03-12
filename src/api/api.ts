@@ -11,13 +11,19 @@ const instance = axios.create({
 export const profileAPI = {
     getProfile(userId: number){
         return instance.get(`profile/${userId}`).then(response => response.data)
-    }
+    },
+    getStatus(userId: number){
+        return instance.get(`profile/status/${userId}`).then(response => response.data)
+    },
+    updateStatus(status: string){
+        return instance.put(`profile/status`, {status}).then(response => response.data)
+    },
 }
 
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10){
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
-    }
+    },
 }
 
 export const followAPI = {
@@ -26,11 +32,11 @@ export const followAPI = {
     },
     followUser(id: number){
         return instance.post(`follow/${id}`).then(response => response.data)
-    }
+    },
 }
 
 export const authAPI = {
     me(){
         return instance.get(`auth/me`).then(response => response.data)
-    }
+    },
 }

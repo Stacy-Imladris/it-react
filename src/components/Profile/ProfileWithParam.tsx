@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import {NavigateFunction, Params, useLocation, useNavigate, useParams} from 'react-router-dom';
 
@@ -21,4 +22,5 @@ export function withRouter<T>(Component:any)  {
         return <Component {...props} router={{location, navigation, params}}/>
     }
     return <ComponentWithRouterProps />
-}
+}*/
+export {}

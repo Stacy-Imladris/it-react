@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType, AppThunk} from '../../redux/redux-store';
 import {actions, follow, getUsers, getUsersOnPage, unfollow, UserType} from "../../redux/users-reducer";
 import React from "react";
 import {Users} from "./Users";
@@ -40,11 +40,11 @@ type MapStatePropsType = {
     followingInProgress: Array<number>
 }
 type MapDispatchPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    follow: (userId: number) => AppThunk
+    unfollow: (userId: number) => AppThunk
     setCurrentPage: (pageNumber: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
-    getUsersOnPage: (pageNumber: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number) => AppThunk
+    getUsersOnPage: (pageNumber: number, pageSize: number) => AppThunk
 }
 export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
 

@@ -7,13 +7,13 @@ export const Navbar = () => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
-                <NavLink to="/profile" className={({isActive}) => isActive ? s.active : s.item}>Profile</NavLink>
+                <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to="/dialogs" className={({isActive}) => isActive ? s.active : s.item}>Messages</NavLink>
+                <NavLink to="/dialogs" activeClassName={s.active}>Messages</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to="/users" className={({isActive}) => isActive ? s.active : s.item}>Users</NavLink>
+                <NavLink to="/users" activeClassName={s.active}>Users</NavLink>
             </div>
             <div className={s.item}>
                 <a>News</a>

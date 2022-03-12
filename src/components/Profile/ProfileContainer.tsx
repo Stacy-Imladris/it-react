@@ -1,54 +1,56 @@
-import React from "react";
-import Profile from "./Profile";
-import {AppStateType} from "../../redux/redux-store";
-import {connect} from "react-redux";
-import {getUserProfile, ProfileType} from "../../redux/profile-reducer";
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import React from 'react';
+import Profile from './Profile';
+import {AppStateType, AppThunk} from '../../redux/redux-store';
+import {connect} from 'react-redux';
+import {getStatus, getUserProfile, ProfileType, updateStatus} from '../../redux/profile-reducer';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
-import {RouterType, withRouter} from './ProfileWithParam';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
-// export type MatchPropsType = {
-//     router: {params: { userId: string } }
-// }
-// type ProfileContainerPropsType = ProfilePropsType & MatchPropsType
-type ProfileContainerPropsType = ProfilePropsType & RouterType
-
+export type PathParamsType = {
+    userId: string
+}
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
+type CommonPropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
-class ProfileContainer extends React.Component<ProfileContainerPropsType> {
+class ProfileContainer extends React.Component<CommonPropsType> {
 
     componentDidMount() {
-        let userId = Number(this.props.router.params.userId)
+        let userId = +this.props.match.params.userId
         if (!userId) {
-            userId = 2
+            userId = 22215
         }
         this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
     }
 
     render() {
         return (
-            <Profile profile={this.props.profile} />
+            <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
         )
     }
 }
 
 export type MapStatePropsType = {
     profile: null | ProfileType
+    status: string
 }
 export type MapDispatchPropsType = {
-    getUserProfile: (userId: number) => void
+    getUserProfile: (userId: number) => AppThunk
+    getStatus: (userId: number) => AppThunk
+    updateStatus: (status: string) => AppThunk
 }
-
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
+        status: state.profilePage.status
     }
 }
 
-export default withRouter<ProfileContainerPropsType>(compose<React.ComponentType>(
-    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {getUserProfile}),
-    withAuthRedirect)(ProfileContainer))
-
-/*
-export default withAuthRedirect(connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {getUserProfile})(ProfileContainer))*/
+export default compose<React.ComponentType>(
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
+        getUserProfile, getStatus, updateStatus}),
+    withRouter,
+    //withAuthRedirect
+)(ProfileContainer)

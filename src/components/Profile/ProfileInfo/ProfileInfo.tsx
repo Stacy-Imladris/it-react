@@ -2,13 +2,16 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import {ProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
+import ProfileStatus from './ProfileStatus';
+import {AppThunk} from '../../../redux/redux-store';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType
+    status: string
+    updateStatus: (status: string) => AppThunk
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
-
     if (!props.profile) {
         return <Preloader/>
     }
@@ -16,13 +19,14 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     return (
         <div>
-            <div className={s.banner}>
+            {/*<div className={s.banner}>
                 <img src='https://artline.ua/storage/images/news/120/ru/news_1600262974910581_0.jpg'/>
-            </div>
+            </div>*/}
             <div className={s.avatar}>
                 <img src={props.profile?.photos.large ? props.profile?.photos.large : ''}/>
             </div>
             <div className={s.descriptionBlock}>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.aboutMe}</div>
                 <div>{props.profile.lookingForAJob ? 'I\'m looking for a job right now' : 'I don\'t need a job'}</div>
@@ -33,4 +37,5 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         </div>
     )
 }
+
 export default ProfileInfo;
