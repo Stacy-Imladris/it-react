@@ -10,7 +10,6 @@ type MapStatePropsType = {
     dialogsPage: InitialStateType
 }
 type MapDispatchPropsType = {
-    changeNewMessageText: (body: string) => void
     addMessage: (message: string) => void
 }
 
@@ -23,7 +22,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export default compose<React.ComponentType>(
-    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
-        changeNewMessageText: actions.changeNewMessageText, addMessage: actions.addMessage}),
-        withAuthRedirect
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {addMessage: actions.addMessage}),
+    withAuthRedirect
 )(Dialogs)

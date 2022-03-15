@@ -7,7 +7,7 @@ type ProfileStatusPropsType = {
     updateStatus: (status: string) => AppThunk
 }
 
-class ProfileStatus extends React.PureComponent<ProfileStatusPropsType> {
+export class ProfileStatus extends React.PureComponent<ProfileStatusPropsType> {
     state = {
         editMode: false,
         status: this.props.status
@@ -41,5 +41,3 @@ class ProfileStatus extends React.PureComponent<ProfileStatusPropsType> {
         )
     }
 }
-
-export default ProfileStatus;

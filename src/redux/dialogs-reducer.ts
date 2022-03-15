@@ -10,7 +10,6 @@ export type MessageType = {
     message: string
 }
 const initialState = {
-    messageForNewMessage: '',
     dialogs: [
         {
             id: 1,
@@ -46,25 +45,17 @@ export type InitialStateType = typeof initialState
 
 const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionTypes): InitialStateType => {
     switch (action.type) {
-        case "ADD_MESSAGE":
-            const newMessage: MessageType = {
-                id: new Date().getTime(),
-                message: action.messageForNewMessage,
-            }
-            return {...state,
-                messageForNewMessage: '',
-                messages: [...state.messages, newMessage]
-            }
-        case 'CHANGE_NEW_MESSAGE_TEXT':
-            return {...state, messageForNewMessage: action.newTextMessage}
+        case "ADD_MESSAGE": {
+            const newMessage: MessageType = {id: new Date().getTime(), message: action.messageText,}
+            return {...state, messages: [...state.messages, newMessage]}
+        }
         default:
             return state;
     }
 }
 
 export const actions = {
-    addMessage: (messageText: string) => ({type: 'ADD_MESSAGE', messageForNewMessage: messageText} as const),
-    changeNewMessageText: (newMessage: string) => ({type: 'CHANGE_NEW_MESSAGE_TEXT', newTextMessage: newMessage} as const),
+    addMessage: (messageText: string) => ({type: 'ADD_MESSAGE', messageText} as const),
 }
 
 export default dialogsReducer;

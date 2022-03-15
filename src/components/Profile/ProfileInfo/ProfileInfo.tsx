@@ -2,7 +2,7 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import {ProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
-import ProfileStatus from './ProfileStatus';
+import {ProfileStatus} from './ProfileStatus';
 import {AppThunk} from '../../../redux/redux-store';
 
 type ProfileInfoPropsType = {
@@ -11,7 +11,7 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => AppThunk
 }
 
-const ProfileInfo = (props: ProfileInfoPropsType) => {
+export const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile) {
         return <Preloader/>
     }
@@ -37,5 +37,3 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         </div>
     )
 }
-
-export default ProfileInfo;
