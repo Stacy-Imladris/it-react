@@ -6,12 +6,12 @@ type PostPropsType = {
     likeCount: number
 }
 
-const Post = (props: PostPropsType) => {
+const Post = ({message, likeCount}: PostPropsType) => {
     return <div className={s.item}>
         <img src='https://99px.ru/sstorage/1/2012/06/image_10406120020582211120.gif'/>
-        {props.message}
+        {message}
         <div>
-            <span>like</span> {props.likeCount}
+            <span>like</span> {likeCount}
         </div>
     </div>
 }

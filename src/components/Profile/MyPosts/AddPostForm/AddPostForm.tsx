@@ -9,9 +9,9 @@ export type AddPostFormDataType = {
     newPostBody: string
 }
 
-const addPostForm: React.FC<InjectedFormProps<AddPostFormDataType>> = (props) => {
+const addPostForm: React.FC<InjectedFormProps<AddPostFormDataType>> = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={'Enter your post'} name={'newPostBody'}
                        component={Textarea} validate={[required, maxLength10]}/>

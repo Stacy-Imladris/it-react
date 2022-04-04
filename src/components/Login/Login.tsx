@@ -5,12 +5,12 @@ import {AppStateType} from '../../redux/redux-store';
 import {LoginFormDataType, LoginReduxForm} from './LoginForm';
 import {Redirect} from 'react-router-dom';
 
-const Login: React.FC<LoginPropsType> = (props) => {
+const Login: React.FC<LoginPropsType> = ({login, isAuth}) => {
     const onSubmit = (formData: LoginFormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
 

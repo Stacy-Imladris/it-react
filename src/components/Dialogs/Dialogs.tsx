@@ -6,14 +6,14 @@ import {DialogType, MessageType} from '../../redux/dialogs-reducer';
 import {DialogsPropsType} from './DialogsContainer';
 import {AddMessageFormDataType, AddMessageFormRedux} from './AddMessageForm/AddMessageForm';
 
-export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsElements = props.dialogsPage.dialogs.map((d: DialogType) => <DialogItem key={d.id} name={d.name}
+export const Dialogs = ({dialogsPage, addMessage}: DialogsPropsType) => {
+    const dialogsElements = dialogsPage.dialogs.map((d: DialogType) => <DialogItem key={d.id} name={d.name}
                                                                                          id={d.id} img={d.img}/>);
-    const messagesElements = props.dialogsPage.messages.map((m: MessageType) => <Message key={m.id} message={m.message}
+    const messagesElements = dialogsPage.messages.map((m: MessageType) => <Message key={m.id} message={m.message}
                                                                                          id={m.id}/>);
 
     const addNewMessage = (formData: AddMessageFormDataType) => {
-        props.addMessage(formData.newMessageBody)
+        addMessage(formData.newMessageBody)
     }
 
     return (

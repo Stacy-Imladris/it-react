@@ -4,11 +4,12 @@ import Post from './Post/Post';
 import {MyPostsPropsType} from './MyPostsContainer';
 import {AddPostFormDataType, AddPostFormRedux} from './AddPostForm/AddPostForm';
 
-export const MyPosts = (props: MyPostsPropsType) => {
-    const postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likeCount={p.likesCount}/>);
+export const MyPosts = React.memo(({posts, addPost}: MyPostsPropsType) => {
+    const postsElements = [...posts].reverse().map(p => <Post key={p.id} message={p.message}
+                                                     likeCount={p.likesCount}/>);
 
     const addNewPost = (formData: AddPostFormDataType) => {
-        props.addPost(formData.newPostBody)
+        addPost(formData.newPostBody)
     }
 
     return (
@@ -20,4 +21,4 @@ export const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     )
-}
+})

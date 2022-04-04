@@ -1,5 +1,4 @@
 import React, {ChangeEvent} from 'react';
-import s from './ProfileInfo.module.css';
 import {AppThunk} from '../../../redux/redux-store';
 
 type ProfileStatusPropsType = {

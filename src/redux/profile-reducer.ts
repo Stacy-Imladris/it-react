@@ -1,26 +1,7 @@
-import {UserPhotos} from './users-reducer';
 import {AppThunk, InferActionTypes} from './redux-store';
-import {profileAPI} from '../api/api';
+import {profileAPI, ProfileType} from '../api/api';
 
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export type ContactType = {
-    [key: string]: string | null
-}
-export type ProfileType = {
-    aboutMe: string
-    contacts: ContactType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: UserPhotos
-}
-
-const initialState = {
+const profileInitialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 3},
         {id: 2, message: 'It\'s my first post', likesCount: 23},
@@ -31,49 +12,50 @@ const initialState = {
     status: ''
 }
 
-export type ProfileActionTypes = InferActionTypes<typeof actions>
-
-export type InitialStateType = typeof initialState
-
-const profileReducer = (state: InitialStateType = initialState, action: ProfileActionTypes): InitialStateType => {
+export const profileReducer = (state: ProfileInitialStateType = profileInitialState, action: ProfileActionTypes): ProfileInitialStateType => {
     switch (action.type) {
-        case 'ADD_POST': {
-            const newPost: PostType = {id: new Date().getTime(), message: action.postText, likesCount: 0}
+        case 'PROFILE/ADD_POST': {
+            const newPost: PostType = {id: new Date().getTime(), message: action.payload.postText, likesCount: 0}
             return {...state, posts: [...state.posts, newPost]}
         }
-        case 'SET_USER_PROFILE':
-            return {...state, profile: action.profile}
-        case 'SET_STATUS':
-            return {...state, status: action.status}
+        case 'PROFILE/DELETE_POST':
+            return {...state, posts: state.posts.filter(f => f.id !== action.payload.postId)}
+        case 'PROFILE/SET_USER_PROFILE':
+        case 'PROFILE/SET_STATUS':
+            return {...state, ...action.payload}
         default:
             return state;
     }
 }
 
-export const actions = {
-    addPost: (postText: string) => ({type: 'ADD_POST', postText} as const),
-    setUserProfile: (profile: null | ProfileType) => ({type: 'SET_USER_PROFILE', profile} as const),
-    setStatus: (status: string) => ({type: 'SET_STATUS', status} as const),
+export const profileActions = {
+    addPost: (postText: string) => ({type: 'PROFILE/ADD_POST', payload: {postText}} as const),
+    deletePost: (postId: number) => ({type: 'PROFILE/DELETE_POST', payload: {postId}} as const),
+    setUserProfile: (profile: null | ProfileType) => ({type: 'PROFILE/SET_USER_PROFILE', payload: {profile}} as const),
+    setStatus: (status: string) => ({type: 'PROFILE/SET_STATUS', payload: {status}} as const),
 }
 
-export const getUserProfile = (userId: number): AppThunk => dispatch => {
-    profileAPI.getProfile(userId).then(data => {
-        dispatch(actions.setUserProfile(data))
-    })
+//thunks
+export const getUserProfile = (userId: number): AppThunk => async dispatch => {
+    const data = await profileAPI.getProfile(userId)
+    dispatch(profileActions.setUserProfile(data))
+}
+export const getStatus = (userId: number): AppThunk => async dispatch => {
+    const data = await profileAPI.getStatus(userId)
+    dispatch(profileActions.setStatus(data))
+}
+export const updateStatus = (status: string): AppThunk => async dispatch => {
+    const data = await profileAPI.updateStatus(status)
+    if (data.resultCode === 0) {
+        dispatch(profileActions.setStatus(status))
+    }
 }
 
-export const getStatus = (userId: number): AppThunk => dispatch => {
-    profileAPI.getStatus(userId).then(data => {
-        dispatch(actions.setStatus(data))
-    })
+//types
+export type ProfileActionTypes = InferActionTypes<typeof profileActions>
+export type ProfileInitialStateType = typeof profileInitialState
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
 }
-
-export const updateStatus = (status: string): AppThunk => dispatch => {
-    profileAPI.updateStatus(status).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(actions.setStatus(status))
-        }
-    })
-}
-
-export default profileReducer;

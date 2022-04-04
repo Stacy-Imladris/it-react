@@ -8,14 +8,14 @@ export type DialogItemPropsType = {
     img: string
 }
 
-export const DialogItem = (props: DialogItemPropsType) => {
+export const DialogItem = ({name, id, img}: DialogItemPropsType) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
             <div>
-                <img src={props.img}/>
+                <img src={img}/>
             </div>
             <div>
-                <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
+                <NavLink to={'/dialogs/' + id}>{name}</NavLink>
             </div>
         </div>
     )

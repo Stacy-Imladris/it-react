@@ -1,9 +1,9 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
-import {ProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ProfileStatus} from './ProfileStatus';
 import {AppThunk} from '../../../redux/redux-store';
+import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
+import {ProfileType} from '../../../api/api';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType
@@ -11,11 +11,11 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => AppThunk
 }
 
-export const ProfileInfo = (props: ProfileInfoPropsType) => {
-    if (!props.profile) {
+export const ProfileInfo = ({profile, status, updateStatus}: ProfileInfoPropsType) => {
+    if (!profile) {
         return <Preloader/>
     }
-    const contactsValues = Object.values(props.profile.contacts)
+    const contactsValues = Object.values(profile.contacts)
 
     return (
         <div>
@@ -23,14 +23,14 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img src='https://artline.ua/storage/images/news/120/ru/news_1600262974910581_0.jpg'/>
             </div>*/}
             <div className={s.avatar}>
-                <img src={props.profile?.photos.large ? props.profile?.photos.large : ''}/>
+                <img src={profile?.photos.large ? profile?.photos.large : ''}/>
             </div>
             <div className={s.descriptionBlock}>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-                <div>{props.profile.fullName}</div>
-                <div>{props.profile.aboutMe}</div>
-                <div>{props.profile.lookingForAJob ? 'I\'m looking for a job right now' : 'I don\'t need a job'}</div>
-                <div>{props.profile.lookingForAJobDescription}</div>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                <div>{profile.fullName}</div>
+                <div>{profile.aboutMe}</div>
+                <div>{profile.lookingForAJob ? 'I\'m looking for a job right now' : 'I don\'t need a job'}</div>
+                <div>{profile.lookingForAJobDescription}</div>
                 <span>Where you can find me: </span>
                 {contactsValues.map((m, i) => m && <div key={m + i}>{m}</div>)}
             </div>

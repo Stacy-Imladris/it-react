@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {AppStateType, AppThunk} from '../../redux/redux-store';
-import {actions, follow, requestUsers, unfollow, UserType} from '../../redux/users-reducer';
+import {follow, requestUsers, unfollow, usersActions, UsersInitialStateType} from '../../redux/users-reducer';
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
@@ -10,11 +10,13 @@ import {getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getT
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.requestUsers(pageNumber, pageSize)
     }
 
     render() {
@@ -32,14 +34,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
-type MapStatePropsType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-}
+type MapStatePropsType = UsersInitialStateType
 type MapDispatchPropsType = {
     follow: (userId: number) => AppThunk
     unfollow: (userId: number) => AppThunk
@@ -48,16 +43,6 @@ type MapDispatchPropsType = {
 }
 export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
-/*const mapStateToProps = (state: AppStateType): MapStatePropsType => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-    }
-}*/
 /*const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         follow: (userId: number) => {
@@ -93,5 +78,5 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
-        follow, unfollow, setCurrentPage: actions.setCurrentPage, requestUsers}),
+        follow, unfollow, setCurrentPage: usersActions.setCurrentPage, requestUsers}),
 )(UsersContainer)

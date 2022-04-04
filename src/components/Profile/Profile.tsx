@@ -1,8 +1,8 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {ProfileType} from "../../redux/profile-reducer";
 import {AppThunk} from '../../redux/redux-store';
+import {ProfileType} from '../../api/api';
 
 type ProfilePropsType = {
     profile: null | ProfileType
@@ -10,11 +10,11 @@ type ProfilePropsType = {
     updateStatus: (status: string) => AppThunk
 }
 
-const Profile = (props: ProfilePropsType) => {
+const Profile = ({profile, status, updateStatus}: ProfilePropsType) => {
 
     return (
         <div>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
             <MyPostsContainer/>
         </div>
     )

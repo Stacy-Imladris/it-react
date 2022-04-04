@@ -2,9 +2,10 @@ import React from 'react';
 import Profile from './Profile';
 import {AppStateType, AppThunk} from '../../redux/redux-store';
 import {connect} from 'react-redux';
-import {getStatus, getUserProfile, ProfileType, updateStatus} from '../../redux/profile-reducer';
+import {getStatus, getUserProfile, updateStatus} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
+import {ProfileType} from '../../api/api';
 
 export type PathParamsType = {
     userId: string
@@ -15,15 +16,16 @@ type CommonPropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 class ProfileContainer extends React.Component<CommonPropsType> {
 
     componentDidMount() {
-        let userId = +this.props.match.params.userId
+        const {match, authorizedUserId, history, getUserProfile, getStatus} = this.props
+        let userId = +match.params.userId
         if (!userId) {
-            userId = this.props.authorizedUserId
+            userId = authorizedUserId
             if (!userId) {
-                this.props.history.push('/login')
+                history.push('/login')
             }
         }
-        this.props.getUserProfile(userId)
-        this.props.getStatus(userId)
+        getUserProfile(userId)
+        getStatus(userId)
     }
 
     render() {
