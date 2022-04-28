@@ -16,7 +16,6 @@ type UsersPropsType = {
 }
 
 export const Users = ({users, currentPage, onPageChanged, totalUsersCount, pageSize, followingInProgress, follow, unfollow}: UsersPropsType) => {
-
     return (
         <div>
             <Paginator currentPage={currentPage} onPageChanged={onPageChanged}

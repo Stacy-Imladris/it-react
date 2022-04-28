@@ -45,7 +45,7 @@ export const usersActions = {
 }
 
 const followUnfollowFlow = async (dispatch: Dispatch<UsersActionTypes>,
-                                  userId: number, apiMethod: (id: number) => Promise<resp<{}>>,
+                                  userId: number, apiMethod: (id: number) => Promise<PromiseType>,
                                   actionCreator: (userId: number) => ReturnType<typeof usersActions.followSuccess>
                                       | ReturnType<typeof usersActions.unfollowSuccess>) => {
     dispatch(usersActions.toggleFollowingProgress(true, userId))
@@ -59,7 +59,7 @@ const followUnfollowFlow = async (dispatch: Dispatch<UsersActionTypes>,
 //thunks
 export const requestUsers = (page: number, pageSize: number): AppThunk => async dispatch => {
     dispatch(usersActions.toggleIsFetching(true))
-    dispatch(usersActions.setCurrentPage(page)) // diff getUsersOnPage
+    dispatch(usersActions.setCurrentPage(page))
     const data = await usersAPI.getUsers(page, pageSize)
     dispatch(usersActions.toggleIsFetching(false))
     dispatch(usersActions.setUsers(data.items))
@@ -71,11 +71,12 @@ export const follow = (userId: number): AppThunk => async dispatch => {
 export const unfollow = (userId: number): AppThunk => async dispatch => {
     await followUnfollowFlow(dispatch, userId, followAPI.unfollowUser.bind(followAPI), usersActions.unfollowSuccess)
 }
-type resp<T = {}> = {
+
+//types
+type PromiseType<T = {}> = {
     resultCode: number
     messages: string[]
     data: T
 }
-//types
 export type UsersActionTypes = InferActionTypes<typeof usersActions>
 export type UsersInitialStateType = typeof usersInitialState

@@ -47,7 +47,7 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusPropsType> = ({status
     return (
         <div>
             {!editMode &&
-            <div><span onDoubleClick={activateEditMode}>{status || '-------'}</span></div>}
+            <div><span onDoubleClick={activateEditMode}>{status || 'no status'}</span></div>}
             {editMode &&
             <div><input onChange={onStatusChange} value={profileStatus} onBlur={deactivateEditMode} autoFocus/></div>}
         </div>
