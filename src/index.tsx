@@ -8,7 +8,7 @@ import {store} from "./redux/redux-store";
 import {Provider} from "react-redux";
 
 ReactDOM.render(
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
         <Provider store={store}>
             <App />
         </Provider>
