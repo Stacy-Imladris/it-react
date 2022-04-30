@@ -9,6 +9,12 @@ const instance = axios.create({
     },
 })
 
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get<any, AxiosResponse<SecurityResponseType>>(`security/get-captcha-url`).then(response => response.data.url)
+    },
+}
+
 export const profileAPI = {
     getProfile(userId: number) {
         return instance.get<any, AxiosResponse<ProfileType>>(`profile/${userId}`).then(response => response.data)
@@ -48,10 +54,10 @@ export const followAPI = {
 
 export const authAPI = {
     me() {
-        return instance.get<any, AxiosResponse<ResponseType<{ email: string, id: number, login: string }>>>(`auth/me`).then(response => response.data)
+        return instance.get<any, AxiosResponse<ResponseType<AuthMeDataType>>>(`auth/me`).then(response => response.data)
     },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        return instance.post<any, AxiosResponse<ResponseType<{ userId: number }>>, { email: string, password: string, rememberMe: boolean }>(`auth/login`, {email, password, rememberMe}).then(response => response.data)
+    login(loginPayload: LoginPayloadType) {
+        return instance.post<any, AxiosResponse<ResponseType<{ userId: number }>>, LoginPayloadType>(`auth/login`, loginPayload).then(response => response.data)
     },
     logout() {
         return instance.delete<any, AxiosResponse<ResponseType>>(`auth/login`).then(response => response.data)
@@ -63,6 +69,17 @@ export type ResponseType<T = {}> = {
     fieldsErrors: string[]
     messages: string[]
     resultCode: number
+}
+export type AuthMeDataType = {
+    email: string
+    id: number
+    login: string
+}
+export type LoginPayloadType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string
 }
 export type ContactType = {
     facebook: null | string
@@ -99,4 +116,7 @@ export type GetUsersResponseType = {
     error: null | string
     items: UserType[]
     totalCount: number
+}
+export type SecurityResponseType = {
+    url: string
 }
