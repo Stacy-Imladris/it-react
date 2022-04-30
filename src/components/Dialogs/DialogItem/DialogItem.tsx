@@ -1,6 +1,5 @@
-import React from 'react';
-import s from './../Dialogs.module.css';
-import {NavLink} from "react-router-dom";
+import s from './DialogItem.module.scss'
+import {NavLink} from 'react-router-dom'
 
 export type DialogItemPropsType = {
     name: string
@@ -8,15 +7,9 @@ export type DialogItemPropsType = {
     img: string
 }
 
-export const DialogItem = ({name, id, img}: DialogItemPropsType) => {
-    return (
-        <div className={s.dialog + ' ' + s.active}>
-            <div>
-                <img src={img}/>
-            </div>
-            <div>
-                <NavLink to={'/dialogs/' + id}>{name}</NavLink>
-            </div>
-        </div>
-    )
-}
+export const DialogItem = ({name, id, img}: DialogItemPropsType) => (
+    <div className={s.dialog}>
+        <div><img src={img} alt={'user image'}/></div>
+        <div><NavLink to={'/dialogs/' + id}>{name}</NavLink></div>
+    </div>
+)

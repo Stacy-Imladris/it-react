@@ -1,5 +1,4 @@
-import React from 'react';
-import s from './Paginator.module.css';
+import s from './Paginator.module.scss';
 import {getPages} from '../../../utils/getPages';
 
 type PaginatorPropsType = {
@@ -9,11 +8,7 @@ type PaginatorPropsType = {
     onPageChanged: (pageNumber: number) => void
 }
 
-export const Paginator = ({
-                              currentPage,
-                              onPageChanged,
-                              totalUsersCount,
-                              pageSize
+export const Paginator = ({currentPage, onPageChanged, totalUsersCount, pageSize
                           }: PaginatorPropsType) => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
 
@@ -25,7 +20,6 @@ export const Paginator = ({
     const pagesForRender = getPages(pages, currentPage, pagesCount)
 
     return (
-
         <div className={s.paginatorContainer}>
             <div className={s.container}>
                 <div className={s.edge}>
@@ -63,7 +57,5 @@ export const Paginator = ({
                 </div>
             </div>
         </div>
-
-
     )
 }

@@ -1,0 +1,22 @@
+.sidebar {
+  margin-top: 50px;
+
+  .title {
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .friends {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    & img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+  }
+}

@@ -1,12 +1,12 @@
-import React from 'react';
-import s from './FormsControls.module.css'
+import s from './FormsControls.module.scss'
 import {WrappedFieldProps} from 'redux-form';
+import {FC} from 'react';
 
-const FormControl: React.FC<WrappedFieldProps & { placeholder?: string }> = ({input, meta: {touched, error}, children}) => {
+const FormControl: FC<WrappedFieldProps & { placeholder?: string }> = ({input, meta: {touched, error}, children}) => {
     const hasError = touched && error
 
     return (
-        <div className={`${s.formControl} ${hasError ? s.error : ''}`}>
+        <div className={hasError ? s.error : ''}>
             <div>
                 {children}
             </div>
@@ -15,11 +15,11 @@ const FormControl: React.FC<WrappedFieldProps & { placeholder?: string }> = ({in
     )
 }
 
-export const Textarea: React.FC<WrappedFieldProps & { placeholder?: string }> = (props) => {
+export const Textarea: FC<WrappedFieldProps & { placeholder?: string }> = (props) => {
     const {input, meta, children, ...restProps} = props
     return <FormControl {...props}><textarea {...input} {...restProps}/></FormControl>
 }
-export const Input: React.FC<WrappedFieldProps & { placeholder?: string }> = (props) => {
+export const Input: FC<WrappedFieldProps & { placeholder?: string }> = (props) => {
     const {input, meta, children, ...restProps} = props
     return <FormControl {...props}><input {...input} {...restProps}/></FormControl>
 }
