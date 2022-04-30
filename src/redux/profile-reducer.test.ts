@@ -12,6 +12,7 @@ beforeEach(() => {
         ],
         profile: null,
         status: '',
+        isEditMode: false,
     }
 })
 

@@ -19,7 +19,7 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                     <span>
                         <div>
                             <NavLink to={'/profile/' + user.id}>
-                                <img src={user.photos.small !== null ? user.photos.small : userPhoto}
+                                <img src={user.photos.small || userPhoto}
                                      className={s.userPhoto}/>
                             </NavLink>
                         </div>
