@@ -4,6 +4,7 @@ import {createSelector} from 'reselect';
 export const getUsersSelector = (state: AppStateType) => state.usersPage.users
 
 export const getUsers = createSelector(getUsersSelector, (users) => users.filter(u => true))
+// example of selector with exact parameters
 
 export const getPageSize = (state: AppStateType) => state.usersPage.pageSize
 

@@ -1,15 +1,12 @@
-import {ChangeEvent, useState} from 'react';
-import s from './ProfileInfo.module.css';
+import {ChangeEvent} from 'react';
+import s from './ProfileInfo.module.scss';
 import {Preloader} from '../../common/Preloader/Preloader';
 import {AppThunk} from '../../../redux/redux-store';
-import {ProfileType} from '../../../api/api';
 import userPhoto from '../../../assets/images/user.png';
 import {ProfileData} from './ProfileData/ProfileData';
-import {
-    ProfileDataFormPropsType,
-    ProfileDataReduxForm
-} from './ProfileDataForm/ProfileDataForm';
+import {ProfileDataFormPropsType, ProfileDataReduxForm} from './ProfileDataForm/ProfileDataForm';
 import {ProfileStatusWithHooks} from './ProfileData/ProfileStatus/ProfileStatusWithHooks';
+import {ProfileType} from '../../../api/profile-api';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType
@@ -25,9 +22,7 @@ type ProfileInfoPropsType = {
 export const ProfileInfo = ({profile, status, updateStatus, savePhoto, saveProfile,
                                 isOwner, isEditMode, setEditMode,
                             }: ProfileInfoPropsType) => {
-    if (!profile) {
-        return <Preloader/>
-    }
+    if (!profile) return <Preloader/>
 
     const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length) {
@@ -42,7 +37,7 @@ export const ProfileInfo = ({profile, status, updateStatus, savePhoto, saveProfi
     return (
         <div>
             <div className={s.avatar}>
-                <img src={profile.photos.large || userPhoto}/>
+                <img src={profile.photos.large || userPhoto} alt={'user avatar'}/>
                 {isOwner && <input type={'file'} onChange={mainPhotoSelected}/>}
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>

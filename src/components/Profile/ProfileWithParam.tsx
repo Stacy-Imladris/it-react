@@ -1,6 +1,4 @@
-/*
-import React from 'react';
-import {NavigateFunction, Params, useLocation, useNavigate, useParams} from 'react-router-dom';
+/*import {NavigateFunction, Params, useLocation, useNavigate, useParams} from 'react-router-dom';
 
 // export function ProfileWithParam() {
 //     const match: Params<string> = useParams<string>();

@@ -37,12 +37,13 @@ export const dialogsReducer = (state: DialogsInitialStateType = dialogsInitialSt
             return {...state, messages: [...state.messages, newMessage]}
         }
         default:
-            return state;
+            return state
     }
 }
 
 export const dialogsActions = {
-    addMessage: (messageText: string) => ({type: 'DIALOGS/ADD_MESSAGE', payload: {messageText}} as const),
+    addMessage: (messageText: string) =>
+        ({type: 'DIALOGS/ADD_MESSAGE', payload: {messageText}} as const),
 }
 
 //types

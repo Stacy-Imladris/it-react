@@ -1,8 +1,7 @@
-import React from 'react';
 import {AppThunk} from '../../redux/redux-store';
-import {UserType} from '../../api/api';
 import {Paginator} from '../common/Paginator/Paginator';
-import {User} from './User';
+import {User} from './User/User';
+import {UserType} from '../../api/users-api';
 
 type UsersPropsType = {
     totalUsersCount: number
@@ -15,13 +14,12 @@ type UsersPropsType = {
     followingInProgress: Array<number>
 }
 
-export const Users = ({users, currentPage, onPageChanged, totalUsersCount, pageSize, followingInProgress, follow, unfollow}: UsersPropsType) => {
-    return (
-        <div>
-            <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
-                       totalUsersCount={totalUsersCount} pageSize={pageSize}/>
-            {users.map(u => <User key={u.id} user={u} follow={follow} unfollow={unfollow}
-                                  followingInProgress={followingInProgress}/>)}
-        </div>
-    )
-}
+export const Users = ({users, currentPage, onPageChanged, totalUsersCount, pageSize,
+                          followingInProgress, follow, unfollow}: UsersPropsType) => (
+    <div>
+        <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
+                   totalUsersCount={totalUsersCount} pageSize={pageSize}/>
+        {users.map(u => <User key={u.id} user={u} follow={follow} unfollow={unfollow}
+                              followingInProgress={followingInProgress}/>)}
+    </div>
+)

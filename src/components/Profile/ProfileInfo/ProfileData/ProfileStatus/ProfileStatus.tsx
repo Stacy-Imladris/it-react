@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import {ChangeEvent, PureComponent} from 'react';
 import {AppThunk} from '../../../../../redux/redux-store';
 
 type ProfileStatusPropsType = {
@@ -6,7 +6,7 @@ type ProfileStatusPropsType = {
     updateStatus: (status: string) => AppThunk
 }
 
-export class ProfileStatus extends React.PureComponent<ProfileStatusPropsType> {
+export class ProfileStatus extends PureComponent<ProfileStatusPropsType> {
     state = {
         editMode: false,
         status: this.props.status
@@ -30,16 +30,15 @@ export class ProfileStatus extends React.PureComponent<ProfileStatusPropsType> {
     }
 
     render() {
-        return (
+        return this.state.editMode ?
             <div>
-                {!this.state.editMode &&
-                <div><span
-                  onDoubleClick={this.activateEditMode}>{this.props.status || '-------'}</span>
-                </div>}
-                {this.state.editMode &&
-                <div><input onChange={this.onStatusChange} value={this.state.status}
-                            onBlur={this.deactivateEditMode} autoFocus/></div>}
+                <input onChange={this.onStatusChange} value={this.state.status} autoFocus
+                       onBlur={this.deactivateEditMode}/>
             </div>
-        )
+            : <div>
+                <span onDoubleClick={this.activateEditMode}>
+                    {this.props.status || '---'}
+                </span>
+            </div>
     }
 }

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import {ChangeEvent, FC, useEffect, useState} from 'react';
 import {AppThunk} from '../../../../../redux/redux-store';
 
 type ProfileStatusPropsType = {
@@ -6,7 +6,10 @@ type ProfileStatusPropsType = {
     updateStatus: (status: string) => AppThunk
 }
 
-export const ProfileStatusWithHooks: React.FC<ProfileStatusPropsType> = ({status, updateStatus}) => {
+export const ProfileStatusWithHooks: FC<ProfileStatusPropsType> = ({
+                                                                       status,
+                                                                       updateStatus
+                                                                   }) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [profileStatus, setProfileStatus] = useState<string>(status)
 
@@ -14,9 +17,8 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusPropsType> = ({status
         setProfileStatus(status)
     }, [status])
 
-    const activateEditMode = () => {
-        setEditMode(true)
-    }
+    const activateEditMode = () => setEditMode(true)
+
     const deactivateEditMode = () => {
         updateStatus(profileStatus)
         setEditMode(false)
@@ -24,32 +26,11 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusPropsType> = ({status
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setProfileStatus(e.currentTarget.value)
     }
-    /*state = {
-        editMode: false,
-        status: this.props.status
-    }
-    activateEditMode = () => {
-        this.setState({editMode: true})
-    }
-    deactivateEditMode = () => {
-        this.setState({editMode: false})
-        this.props.updateStatus(this.state.status)
-    }
-    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({status: e.currentTarget.value})
-    }
-    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({status: this.props.status})
-        }
-    }*/
 
-    return (
+    return editMode ?
         <div>
-            {!editMode &&
-            <div><span onDoubleClick={activateEditMode}>{status || 'no status'}</span></div>}
-            {editMode &&
-            <div><input onChange={onStatusChange} value={profileStatus} onBlur={deactivateEditMode} autoFocus/></div>}
+            <input onChange={onStatusChange} value={profileStatus} autoFocus
+                   onBlur={deactivateEditMode}/>
         </div>
-    )
+        : <div><span onDoubleClick={activateEditMode}>{status || 'no status'}</span></div>
 }

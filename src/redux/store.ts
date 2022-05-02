@@ -120,9 +120,7 @@ const store: StoreType = {
         this._onChange = observer;
     },
     dispatch(action) {
-        // @ts-ignore
         this._state.profilePage = profileReducer(this._state.profilePage, action)
-        // @ts-ignore
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._onChange()

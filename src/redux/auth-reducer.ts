@@ -1,6 +1,8 @@
 import {AppThunk, InferActionTypes} from './redux-store';
-import {authAPI, LoginPayloadType, securityAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
+import {ResultCodes} from '../enums/resultCodes';
+import {authAPI, LoginPayloadType} from '../api/auth-api';
+import {securityAPI} from '../api/security-api';
 
 const authInitialState = {
     id: 0,
@@ -16,7 +18,7 @@ export const authReducer = (state: AuthInitialStateType = authInitialState, acti
         case 'AUTH/SET_CAPTCHA_URL_SUCCESS':
             return {...state, ...action.payload}
         default:
-            return state;
+            return state
     }
 }
 
@@ -30,17 +32,17 @@ export const authActions = {
 //thunks
 export const getAuthUserData = (): AppThunk<Promise<void>> => async dispatch => { // типизация Promise
     const data = await authAPI.me()
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodes.Success) {
         const {id, email, login} = data.data
         dispatch(authActions.setAuthUserData(id, email, login, true))
     }
 }
 export const login = (loginPayload: LoginPayloadType): AppThunk => async dispatch => {
     const data = await authAPI.login(loginPayload)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodes.Success) {
         await dispatch(getAuthUserData())
     } else {
-        if (data.resultCode === 10) {
+        if (data.resultCode === ResultCodes.CaptchaIsRequired) {
             dispatch(getCaptchaUrl())
         }
         const message = data.messages.length > 0 ? data.messages[0] : 'Some error'
@@ -54,7 +56,7 @@ export const getCaptchaUrl = (): AppThunk => async dispatch => {
 }
 export const logout = (): AppThunk => async dispatch => {
     const data = await authAPI.logout()
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodes.Success) {
         dispatch(authActions.setAuthUserData(0, null, null, false))
         dispatch(authActions.setCaptchaUrlSuccess(null))
     }

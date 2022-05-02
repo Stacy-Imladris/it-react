@@ -3,10 +3,8 @@
     display: grid;
     width: 1920px;
     grid-template-areas: "h h" "n c";
-
     grid-template-rows: 100px 1fr;
     grid-template-columns: 2fr 12fr;
-    /*grid-gap: 10 px;*/
 }
 
 .app-wrapper-content {

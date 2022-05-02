@@ -4,7 +4,8 @@ import {login} from '../../redux/auth-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {LoginFormDataType, LoginReduxForm} from './LoginForm';
 import {Redirect} from 'react-router-dom';
-import {LoginPayloadType} from '../../api/api';
+import {PATH} from '../../enums/paths';
+import {LoginPayloadType} from '../../api/auth-api';
 
 const Login: FC<LoginPropsType> = ({login, isAuth, captchaUrl}) => {
     const [captcha, setCaptcha] = useState<string>('')
@@ -20,7 +21,7 @@ const Login: FC<LoginPropsType> = ({login, isAuth, captchaUrl}) => {
         setCaptcha(e.currentTarget.value)
     }
 
-    if (isAuth) return <Redirect to={'/profile'}/>
+    if (isAuth) return <Redirect to={PATH.PROFILE}/>
 
     return (
         <div>

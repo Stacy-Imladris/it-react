@@ -12,13 +12,15 @@ export const appReducer = (state: AppInitialStateType = appInitialState, action:
         case "APP/SET_GLOBAL_ERROR":
             return {...state, ...action.payload}
         default:
-            return state;
+            return state
     }
 }
 
 export const appActions = {
-    initializedSuccess: (initialized: boolean) => ({type: 'APP/INITIALIZED_SUCCESS', payload: {initialized}} as const),
-    setGlobalError: (globalError: null | string) => ({type: 'APP/SET_GLOBAL_ERROR', payload: {globalError}} as const),
+    initializedSuccess: (initialized: boolean) =>
+        ({type: 'APP/INITIALIZED_SUCCESS', payload: {initialized}} as const),
+    setGlobalError: (globalError: null | string) =>
+        ({type: 'APP/SET_GLOBAL_ERROR', payload: {globalError}} as const),
 }
 
 //thunk
