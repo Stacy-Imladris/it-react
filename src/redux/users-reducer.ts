@@ -77,11 +77,11 @@ export const requestUsers = (page: number, pageSize: number): AppThunk => async 
     dispatch(usersActions.toggleIsFetching(false))
 }
 export const follow = (userId: number): AppThunk => async dispatch => {
-    await followUnfollowFlow(dispatch, userId, followAPI.followUser.bind(followAPI),
+   return await followUnfollowFlow(dispatch, userId, followAPI.followUser.bind(followAPI),
         usersActions.followSuccess)
 }
 export const unfollow = (userId: number): AppThunk => async dispatch => {
-    await followUnfollowFlow(dispatch, userId, followAPI.unfollowUser.bind(followAPI),
+    return await followUnfollowFlow(dispatch, userId, followAPI.unfollowUser.bind(followAPI),
         usersActions.unfollowSuccess)
 }
 
