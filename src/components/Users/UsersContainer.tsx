@@ -1,23 +1,31 @@
 import {connect} from 'react-redux';
 import {AppStateType, AppThunk} from '../../redux/redux-store';
-import {follow, requestUsers, unfollow, usersActions, UsersInitialStateType
+import {
+    FilterType, follow, requestUsers, unfollow, usersActions, UsersInitialStateType
 } from '../../redux/users-reducer';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
 import {compose} from 'redux';
-import {getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize,
-    getTotalUsersCount, getUsers} from '../../redux/users-selectors';
+import {
+    getCurrentPage, getUsersFilter, getFollowingInProgress, getIsFetching, getPageSize,
+    getTotalUsersCount, getUsers
+} from '../../redux/users-selectors';
 import {Component, ComponentType} from 'react';
 
 class UsersContainer extends Component<UsersContainerPropsType> {
     componentDidMount() {
-        const {currentPage, pageSize} = this.props
-        this.props.requestUsers(currentPage, pageSize)
+        const {currentPage, pageSize, filter} = this.props
+        this.props.requestUsers(currentPage, pageSize, filter)
     }
 
     onPageChanged = (pageNumber: number) => {
+        const {pageSize, filter} = this.props
+        this.props.requestUsers(pageNumber, pageSize, filter)
+    }
+
+    onFilterChanged = (filter: FilterType) => {
         const {pageSize} = this.props
-        this.props.requestUsers(pageNumber, pageSize)
+        this.props.requestUsers(1, pageSize, filter)
     }
 
     render() {
@@ -29,7 +37,8 @@ class UsersContainer extends Component<UsersContainerPropsType> {
                      users={this.props.users}
                      follow={this.props.follow}
                      unfollow={this.props.unfollow}
-                     followingInProgress={this.props.followingInProgress}/>
+                     followingInProgress={this.props.followingInProgress}
+                     onFilterChanged={this.onFilterChanged}/>
     }
 }
 
@@ -38,7 +47,7 @@ type MapDispatchPropsType = {
     follow: (userId: number) => AppThunk
     unfollow: (userId: number) => AppThunk
     setCurrentPage: (pageNumber: number) => void
-    requestUsers: (currentPage: number, pageSize: number) => AppThunk
+    requestUsers: (currentPage: number, pageSize: number, filter: FilterType) => AppThunk
 }
 export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -71,6 +80,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
     followingInProgress: getFollowingInProgress(state),
+    filter: getUsersFilter(state)
 })
 
 export default compose<ComponentType>(

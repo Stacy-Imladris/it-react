@@ -60,9 +60,13 @@ describe('user reducer tests', () => {
             currentPage: 1,
             isFetching: false,
             followingInProgress: [],
+            filter: {
+                term: '',
+                friend: null as null | boolean
+            }
         }
-        // dispatchMock.mockClear()
-        // getStateMock.mockClear()
+        dispatchMock.mockClear()
+        getStateMock.mockClear()
         // followAPIMock.followUser.mockClear()
         // followAPIMock.unfollowUser.mockClear()
     })

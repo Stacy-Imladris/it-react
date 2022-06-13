@@ -15,3 +15,5 @@ export const getCurrentPage = (state: AppStateType) => state.usersPage.currentPa
 export const getIsFetching = (state: AppStateType) => state.usersPage.isFetching
 
 export const getFollowingInProgress = (state: AppStateType) => state.usersPage.followingInProgress
+
+export const getUsersFilter = (state: AppStateType) => state.usersPage.filter
