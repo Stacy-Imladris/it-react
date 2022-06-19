@@ -1,14 +1,13 @@
 import s from './User.module.scss';
 import userPhoto from '../../../assets/images/user.png';
 import {NavLink} from 'react-router-dom';
-import {AppThunk} from '../../../redux/redux-store';
 import {UserType} from '../../../api/users-api';
 
 type UserPropsType = {
     user: UserType
     followingInProgress: number[]
-    follow: (userId: number) => AppThunk
-    unfollow: (userId: number) => AppThunk
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 export const User = ({user, followingInProgress, follow, unfollow}: UserPropsType) => (

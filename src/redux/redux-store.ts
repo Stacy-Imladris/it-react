@@ -7,6 +7,7 @@ import {DialogActionTypes, dialogsReducer} from './dialogs-reducer';
 import {UsersActionTypes, usersReducer} from './users-reducer';
 import {appReducer} from './app-reducer';
 import {ProfileActionTypes, profileReducer} from './profile-reducer';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
 
 export const rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -18,10 +19,11 @@ export const rootReducer = combineReducers({
     form: formReducer,
 });
 
-export type AppStateType = ReturnType<typeof rootReducer>
-
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
+export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
+
+export type AppStateType = ReturnType<typeof rootReducer>
 export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 export type AppActionsType = AuthActionTypes | DialogActionTypes | ProfileActionTypes | UsersActionTypes | FormAction //| SidebarActionTypes
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>
