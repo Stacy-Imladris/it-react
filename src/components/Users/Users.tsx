@@ -13,6 +13,10 @@ import {
 } from '../../redux/users-selectors';
 import {useDispatch} from 'react-redux';
 import {useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
+import * as queryString from 'querystring';
+
+type QueryParamsType = { term?: string, page?: string, friend?: string };
 
 export const Users = () => {
     const users = useAppSelector(getUsers)
@@ -23,10 +27,41 @@ export const Users = () => {
     const followingInProgress = useAppSelector(getFollowingInProgress)
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
-        dispatch(requestUsers(currentPage, pageSize, filter))
+        const parsed = queryString.parse(history.location.search.substring(1)) as QueryParamsType
+        let actualPage = currentPage
+        let actualFilter = filter
+        if (!!parsed.page) actualPage = Number(parsed.page)
+        if (!!parsed.term) actualFilter = {...actualFilter, term: parsed.term as string}
+        switch(parsed.friend) {
+            case 'null':
+                actualFilter = {...actualFilter, friend: null}
+                break
+            case 'true':
+                actualFilter = {...actualFilter, friend: true}
+                break
+            case 'false':
+                actualFilter = {...actualFilter, friend: false}
+                break
+        }
+        //if (!!parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true' as string}
+
+        dispatch(requestUsers(actualPage, pageSize, actualFilter))
     }, [dispatch])
+
+    useEffect(() => {
+        const query: QueryParamsType = {}
+        if (!!filter.term) query.term = filter.term
+        if (filter.friend !== null && filter) query.friend = String(filter.friend)
+        if (currentPage !== 1) query.page = String(currentPage)
+
+        history.push({
+            pathname: '/users',
+            search: queryString.stringify(query)//`?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
+        })
+    }, [filter, currentPage])
 
     const followUser = (userId: number) => {
         dispatch(follow(userId))
