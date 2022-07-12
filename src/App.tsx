@@ -83,21 +83,21 @@ class App extends Component<AppPropsType> {
                                 {
                                     [
                                         {
-                                            id: v1(),
+                                            id: '1',
                                             title: 'My Profile',
                                             icon: <UserOutlined/>,
                                             key: [
-                                                <Menu.Item key={v1()} ><Link
+                                                <Menu.Item key={1.1}><Link
                                                     to={'/profile'}>Profile</Link></Menu.Item>,
-                                                <Menu.Item key={v1()}><Link
+                                                <Menu.Item key={1.2}><Link
                                                     to={'/dialogs'}>Messages</Link></Menu.Item>
                                             ]
                                         },
                                         {
-                                            id: v1(),
+                                            id: '2',
                                             title: 'Developers',
                                             icon: <TeamOutlined/>,
-                                            key: [<Menu.Item key={v1()}><Link
+                                            key: [<Menu.Item key={2.1}><Link
                                                 to={'/users'}>Users</Link></Menu.Item>]
                                         }
                                     ].map((item) =>
