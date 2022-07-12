@@ -5,12 +5,13 @@ import {useAppSelector} from '../../redux/redux-store';
 import {LoginFormDataType, LoginReduxForm} from './LoginForm';
 import {Redirect} from 'react-router-dom';
 import {PATH} from '../../enums/paths';
+import {selectIsAuth} from '../../redux/auth-selectors';
 
 export const LoginPage = () => {
     const [captcha, setCaptcha] = useState<string>('')
 
     const captchaUrl = useAppSelector(state => state.auth.captchaUrl)
-    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const isAuth = useAppSelector(selectIsAuth)
 
     const dispatch = useDispatch()
 

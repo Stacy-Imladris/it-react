@@ -11,18 +11,12 @@ import {Component, ComponentType, lazy} from 'react';
 import {PATH} from './enums/paths';
 import {UsersPage} from './components/Users/UsersContainer';
 import 'antd/dist/antd.css';
-import type {MenuProps} from 'antd';
 import {Breadcrumb, Layout, Menu} from 'antd';
-import {UserOutlined, TeamOutlined} from '@ant-design/icons';
-import {v1} from 'uuid';
+import {TeamOutlined, UserOutlined} from '@ant-design/icons';
+import {AppHeader} from './components/Header/Header';
 
-const {Header, Content, Footer, Sider} = Layout;
+const {Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu
-
-const items1: MenuProps['items'] = ['1', '2', '3'].map(key => ({
-    key,
-    label: `nav ${key}`,
-}));
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
@@ -43,29 +37,11 @@ class App extends Component<AppPropsType> {
 
     render() {
         if (!this.props.initialized) return <Preloader/>
-        let str = `${PATH.PROFILE}/${this.props.userId ? ':userId?' : ''}`
+        let profilePath = `${PATH.PROFILE}/${this.props.userId ? ':userId?' : ''}`
 
         return (
-            // <div className="app-wrapper">
-            //     <HeaderContainer/>
-            //     <Navbar/>
-            //     <div className="app-wrapper-content">
-            //         <Switch>
-            //             <Route exact path="/" render={() => <Redirect to={PATH.PROFILE}/>}/>
-            //             <Route path={str} render={withSuspense(ProfileContainer)}/>
-            //             <Route path={PATH.DIALOGS} render={withSuspense(DialogsContainer)}/>
-            //             <Route path={PATH.USERS} render={() => <UsersPage/>}/>
-            //             <Route path={PATH.LOGIN} render={() => <LoginPage/>}/>
-            //             <Route path="*" render={() => <div>404 NOT FOUND</div>}/>
-            //         </Switch>
-            //     </div>
-            // </div>
             <Layout>
-                <Header className="header">
-                    <div className="logo"/>
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}
-                          items={items1}/>
-                </Header>
+                <AppHeader/>
                 <Content style={{padding: '0 50px'}}>
                     <Breadcrumb style={{margin: '16px 0'}}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -88,9 +64,9 @@ class App extends Component<AppPropsType> {
                                             icon: <UserOutlined/>,
                                             key: [
                                                 <Menu.Item key={1.1}><Link
-                                                    to={'/profile'}>Profile</Link></Menu.Item>,
+                                                    to={PATH.PROFILE}>Profile</Link></Menu.Item>,
                                                 <Menu.Item key={1.2}><Link
-                                                    to={'/dialogs'}>Messages</Link></Menu.Item>
+                                                    to={PATH.DIALOGS}>Messages</Link></Menu.Item>
                                             ]
                                         },
                                         {
@@ -98,7 +74,7 @@ class App extends Component<AppPropsType> {
                                             title: 'Developers',
                                             icon: <TeamOutlined/>,
                                             key: [<Menu.Item key={2.1}><Link
-                                                to={'/users'}>Users</Link></Menu.Item>]
+                                                to={PATH.DEVELOPERS}>Developers</Link></Menu.Item>]
                                         }
                                     ].map((item) =>
                                         <SubMenu key={item.id} icon={item.icon} title={item.title}>
@@ -111,11 +87,11 @@ class App extends Component<AppPropsType> {
                             <Switch>
                                 <Route exact path="/"
                                        render={() => <Redirect to={PATH.PROFILE}/>}/>
-                                <Route path={str}
+                                <Route path={profilePath}
                                        render={withSuspense(ProfileContainer)}/>
                                 <Route path={PATH.DIALOGS}
                                        render={withSuspense(DialogsContainer)}/>
-                                <Route path={PATH.USERS} render={() => <UsersPage/>}/>
+                                <Route path={PATH.DEVELOPERS} render={() => <UsersPage/>}/>
                                 <Route path={PATH.LOGIN} render={() => <LoginPage/>}/>
                                 <Route path="*" render={() => <div>404 NOT FOUND</div>}/>
                             </Switch>
