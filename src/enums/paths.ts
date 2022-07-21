@@ -3,4 +3,5 @@ export enum PATH {
     PROFILE = '/profile',
     DIALOGS = '/dialogs',
     DEVELOPERS = '/developers',
+    CHAT = '/chat',
 }

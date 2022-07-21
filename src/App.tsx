@@ -20,6 +20,11 @@ const {SubMenu} = Menu
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const ChatPage = lazy(() => import('./pages/Chat/ChatPage'));
+
+const SuspendedProfile = withSuspense(ProfileContainer)
+const SuspendedDialogs = withSuspense(DialogsContainer)
+const SuspendedChatPage = withSuspense(ChatPage)
 
 class App extends Component<AppPropsType> {
     catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
@@ -74,7 +79,9 @@ class App extends Component<AppPropsType> {
                                             title: 'Developers',
                                             icon: <TeamOutlined/>,
                                             key: [<Menu.Item key={2.1}><Link
-                                                to={PATH.DEVELOPERS}>Developers</Link></Menu.Item>]
+                                                to={PATH.DEVELOPERS}>Developers</Link></Menu.Item>,
+                                                <Menu.Item key={2.2}><Link
+                                                    to={PATH.CHAT}>Chat</Link></Menu.Item>]
                                         }
                                     ].map((item) =>
                                         <SubMenu key={item.id} icon={item.icon} title={item.title}>
@@ -88,18 +95,18 @@ class App extends Component<AppPropsType> {
                                 <Route exact path="/"
                                        render={() => <Redirect to={PATH.PROFILE}/>}/>
                                 <Route path={profilePath}
-                                       render={withSuspense(ProfileContainer)}/>
+                                       render={() => <SuspendedProfile/>}/>
                                 <Route path={PATH.DIALOGS}
-                                       render={withSuspense(DialogsContainer)}/>
+                                       render={() => <SuspendedDialogs/>}/>
                                 <Route path={PATH.DEVELOPERS} render={() => <UsersPage/>}/>
                                 <Route path={PATH.LOGIN} render={() => <LoginPage/>}/>
+                                <Route path={PATH.CHAT} render={() => <SuspendedChatPage/>}/>
                                 <Route path="*" render={() => <div>404 NOT FOUND</div>}/>
                             </Switch>
                         </Content>
                     </Layout>
                 </Content>
-                <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant
-                    UED</Footer>
+                <Footer style={{textAlign: 'center'}}>Social Network ©2022 Created by Stacy Imladris</Footer>
             </Layout>
         )
     }

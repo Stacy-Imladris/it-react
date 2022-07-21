@@ -20,7 +20,6 @@ export const AppHeader = () => {
     }
 
     return <Header className="header">
-        <div className="logo"/>
         <Row>
             <Col span={21}>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
