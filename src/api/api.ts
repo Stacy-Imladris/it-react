@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ResultCodes} from '../enums/resultCodes';
+import {ResultCodes} from 'enums/resultCodes';
 
 export const instance = axios.create({
     withCredentials: true,
