@@ -1,7 +1,7 @@
 import s from './Dialogs.module.scss';
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogType, MessageType} from '../../redux/dialogs-reducer';
+import {DialogType, MessageType} from 'redux/dialogs-reducer';
 import {DialogsPropsType} from './DialogsContainer';
 import {AddMessageFormDataType, AddMessageFormRedux} from './AddMessageForm/AddMessageForm';
 
