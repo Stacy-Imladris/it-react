@@ -1,5 +1,5 @@
 import s from './Paginator.module.scss';
-import {getPages} from '../../../utils/getPages';
+import {getPages} from 'utils/getPages';
 
 type PaginatorPropsType = {
     totalUsersCount: number
