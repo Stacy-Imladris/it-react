@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom'
 import {Avatar, Button, Col, Layout, Menu, Row} from 'antd';
-import {PATH} from '../../enums/paths';
+import {PATH} from 'enums/paths';
 import {UserOutlined} from '@ant-design/icons';
-import {useAppSelector} from '../../redux/redux-store';
+import {useAppSelector} from 'redux/redux-store';
 import {useDispatch} from 'react-redux';
-import {selectCurrentUserLogin, selectIsAuth} from '../../redux/auth-selectors';
-import {logout} from '../../redux/auth-reducer';
+import {selectCurrentUserLogin, selectIsAuth} from 'redux/auth-selectors';
+import {logout} from 'redux/auth-reducer';
 
 const {Header} = Layout;
 
