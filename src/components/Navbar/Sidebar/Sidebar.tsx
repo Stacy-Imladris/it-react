@@ -1,6 +1,6 @@
 import s from './Sidebar.module.scss';
 import {SidebarPropsType} from './SidebarContainer';
-import {FriendType} from '../../../redux/sidebar-reducer';
+import {FriendType} from 'redux/sidebar-reducer';
 
 export const Sidebar = ({sidebar}: SidebarPropsType) => {
     const friendElements = sidebar.friends.map(({id, img, name}: FriendType) => (
