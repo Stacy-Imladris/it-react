@@ -1,8 +1,8 @@
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
-import {AppThunk} from '../../redux/redux-store';
+import {AppThunk} from 'redux/redux-store';
 import {ProfileDataFormPropsType} from './ProfileInfo/ProfileDataForm/ProfileDataForm';
-import {ProfileType} from '../../api/profile-api';
+import {ProfileType} from 'api/profile-api';
 
 type ProfilePropsType = {
     profile: null | ProfileType
