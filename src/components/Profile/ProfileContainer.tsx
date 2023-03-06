@@ -1,15 +1,15 @@
 import {Profile} from './Profile';
-import {AppStateType, AppThunk} from '../../redux/redux-store';
+import {AppStateType, AppThunk} from 'redux/redux-store';
 import {connect} from 'react-redux';
 import {
     getStatus, getUserProfile, profileActions, savePhoto, saveProfile, updateStatus
-} from '../../redux/profile-reducer';
+} from 'redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 import {ProfileDataFormPropsType} from './ProfileInfo/ProfileDataForm/ProfileDataForm';
 import {Component, ComponentType} from 'react';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
-import {ProfileType} from '../../api/profile-api';
+import {withAuthRedirect} from 'hoc/withAuthRedirect';
+import {ProfileType} from 'api/profile-api';
 
 export type PathParamsType = {
     userId: string
