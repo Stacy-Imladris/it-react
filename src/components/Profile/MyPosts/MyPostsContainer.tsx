@@ -1,7 +1,7 @@
 import {MyPosts} from './MyPosts';
-import {profileActions, PostType} from '../../../redux/profile-reducer';
+import {profileActions, PostType} from 'redux/profile-reducer';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../../redux/redux-store';
+import {AppStateType} from 'redux/redux-store';
 
 type MapStatePropsType = {
     posts: Array<PostType>,
