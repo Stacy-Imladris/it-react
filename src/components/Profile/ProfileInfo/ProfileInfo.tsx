@@ -1,12 +1,12 @@
 import {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.scss';
-import {Preloader} from '../../common/Preloader/Preloader';
-import {AppThunk} from '../../../redux/redux-store';
-import userPhoto from '../../../assets/images/user.png';
+import {Preloader} from 'components/common/Preloader/Preloader';
+import {AppThunk} from 'redux/redux-store';
+import userPhoto from 'assets/images/user.png';
 import {ProfileData} from './ProfileData/ProfileData';
 import {ProfileDataFormPropsType, ProfileDataReduxForm} from './ProfileDataForm/ProfileDataForm';
 import {ProfileStatusWithHooks} from './ProfileData/ProfileStatus/ProfileStatusWithHooks';
-import {ProfileType} from '../../../api/profile-api';
+import {ProfileType} from 'api/profile-api';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType
