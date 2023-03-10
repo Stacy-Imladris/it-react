@@ -1,7 +1,7 @@
 import s from './User.module.scss';
-import userPhoto from '../../../assets/images/user.png';
+import userPhoto from 'assets/images/user.png';
 import {NavLink} from 'react-router-dom';
-import {UserType} from '../../../api/users-api';
+import {UserType} from 'api/users-api';
 
 type UserPropsType = {
     user: UserType
