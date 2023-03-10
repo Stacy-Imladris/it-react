@@ -1,8 +1,8 @@
-import {useAppSelector} from '../../redux/redux-store';
+import {useAppSelector} from 'redux/redux-store';
 import {Paginator} from '../common/Paginator/Paginator';
 import {User} from './User/User';
 import {UsersSearchForm} from './UsersSearchForm';
-import {FilterType, follow, requestUsers, unfollow} from '../../redux/users-reducer';
+import {FilterType, follow, requestUsers, unfollow} from 'redux/users-reducer';
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -10,7 +10,7 @@ import {
     getTotalUsersCount,
     getUsers,
     getUsersFilter
-} from '../../redux/users-selectors';
+} from 'redux/users-selectors';
 import {useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
