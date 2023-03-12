@@ -1,8 +1,8 @@
-import {Field, Form, Formik} from 'formik';
-import {FilterType} from '../../redux/users-reducer';
 import {memo} from 'react';
-import {useAppSelector} from '../../redux/redux-store';
-import {getUsersFilter} from '../../redux/users-selectors';
+import {Field, Form, Formik} from 'formik';
+import {FilterType} from 'redux/users-reducer';
+import {useAppSelector} from 'redux/redux-store';
+import {getUsersFilter} from 'redux/users-selectors';
 
 type UsersSearchFormPropsType = {
     onFilterChanged: (filter: FilterType) => void
