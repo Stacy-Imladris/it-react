@@ -1,5 +1,5 @@
 import {useAppSelector} from 'redux/redux-store';
-import {Paginator} from '../common/Paginator/Paginator';
+import {Paginator} from 'components/common/Paginator/Paginator';
 import {User} from './User/User';
 import {UsersSearchForm} from './UsersSearchForm';
 import {FilterType, follow, requestUsers, unfollow} from 'redux/users-reducer';
