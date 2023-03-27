@@ -1,8 +1,8 @@
 import {AppThunk, InferActionTypes} from './redux-store';
 import {stopSubmit} from 'redux-form';
-import {ResultCodes} from '../enums/resultCodes';
-import {authAPI, LoginPayloadType} from '../api/auth-api';
-import {securityAPI} from '../api/security-api';
+import {ResultCodes} from 'enums/resultCodes';
+import {authAPI, LoginPayloadType} from 'api/auth-api';
+import {securityAPI} from 'api/security-api';
 
 const authInitialState = {
     id: 0,
