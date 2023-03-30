@@ -1,9 +1,9 @@
 import {AppThunk, InferActionTypes} from './redux-store';
 import {Dispatch} from 'redux';
-import {ResultCodes} from '../enums/resultCodes';
-import {usersAPI, UserType} from '../api/users-api';
-import {followAPI} from '../api/follow-api';
-import {ResponseType} from '../api/api';
+import {ResultCodes} from 'enums/resultCodes';
+import {usersAPI, UserType} from 'api/users-api';
+import {followAPI} from 'api/follow-api';
+import {ResponseType} from 'api/api';
 
 const usersInitialState = {
     users: [] as Array<UserType>,
