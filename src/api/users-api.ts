@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios';
 import {instance} from './api';
-import {FilterType} from '../redux/users-reducer';
+import {FilterType} from 'redux/users-reducer';
 
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10, filter: FilterType = {
