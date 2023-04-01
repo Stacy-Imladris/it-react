@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios';
-import {ProfileDataFormPropsType} from '../components/Profile/ProfileInfo/ProfileDataForm/ProfileDataForm';
+import {ProfileDataFormPropsType} from 'components/Profile/ProfileInfo/ProfileDataForm/ProfileDataForm';
 import {UserPhotos} from './users-api';
 import {instance, ResponseType} from './api';
 
