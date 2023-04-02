@@ -1,9 +1,9 @@
 import {AppThunk, InferActionTypes} from './redux-store';
-import {ProfileDataFormPropsType} from '../components/Profile/ProfileInfo/ProfileDataForm/ProfileDataForm';
+import {ProfileDataFormPropsType} from 'components/Profile/ProfileInfo/ProfileDataForm/ProfileDataForm';
 import {stopSubmit} from 'redux-form';
-import {ResultCodes} from '../enums/resultCodes';
-import {profileAPI, ProfileType} from '../api/profile-api';
-import {UserPhotos} from '../api/users-api';
+import {ResultCodes} from 'enums/resultCodes';
+import {profileAPI, ProfileType} from 'api/profile-api';
+import {UserPhotos} from 'api/users-api';
 
 const profileInitialState = {
     posts: [
