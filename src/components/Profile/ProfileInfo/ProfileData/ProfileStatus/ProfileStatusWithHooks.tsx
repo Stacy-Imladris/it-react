@@ -1,5 +1,5 @@
 import {ChangeEvent, FC, useEffect, useState} from 'react';
-import {AppThunk} from '../../../../../redux/redux-store';
+import {AppThunk} from 'redux/redux-store';
 
 type ProfileStatusPropsType = {
     status: string
