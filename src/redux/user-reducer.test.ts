@@ -5,9 +5,9 @@ import {
     UsersInitialStateType,
     usersReducer
 } from './users-reducer';
-import {ResponseType} from '../api/api';
-import {ResultCodes} from '../enums/resultCodes';
-import {followAPI} from '../api/follow-api';
+import {ResponseType} from 'api/api';
+import {ResultCodes} from 'enums/resultCodes';
+import {followAPI} from 'api/follow-api';
 
 jest.mock('../api/follow-api', () => {
     return {
