@@ -1,5 +1,5 @@
 import s from './ProfileData.module.scss';
-import {ProfileType} from '../../../../api/profile-api';
+import {ProfileType} from 'api/profile-api';
 
 type ProfileDataPropsType = {
     profile: ProfileType
