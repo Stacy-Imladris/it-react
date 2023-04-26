@@ -1,8 +1,8 @@
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input, Textarea} from '../../../common/FormsControls/FormsControls';
-import s from '../../../common/FormsControls/FormsControls.module.scss';
+import {Input, Textarea} from 'components/common/FormsControls/FormsControls';
+import s from 'components/common/FormsControls/FormsControls.module.scss';
 import {FC} from 'react';
-import {ContactType} from '../../../../api/profile-api';
+import {ContactType} from 'api/profile-api';
 
 export type ProfileDataFormPropsType = {
     fullName: string
