@@ -3,7 +3,7 @@ import {instance, ResponseType} from './api';
 
 export const authAPI = {
     me() {
-        return instance.get<any, AxiosResponse<ResponseType<AuthMeDataType>>>(`auth/me`).then(response => response.data)
+        return instance.get<any, AxiosResponse<ResponseType<AuthMeData>>>(`auth/me`).then(response => response.data)
     },
 
     login(loginPayload: LoginPayloadType) {
@@ -15,7 +15,7 @@ export const authAPI = {
     },
 }
 
-export type AuthMeDataType = {
+export type AuthMeData = {
     email: string
     id: number
     login: string
