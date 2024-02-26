@@ -15,6 +15,7 @@ export type UserPhotos = {
     small: string | null
     large: string | null
 }
+
 export type UserType = {
     name: string
     id: number
@@ -23,6 +24,7 @@ export type UserType = {
     status: string | null
     followed: boolean
 }
+
 export type GetUsersResponseType = {
     error: null | string
     items: UserType[]
