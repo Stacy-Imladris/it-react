@@ -5,13 +5,16 @@ import {instance, ResponseType} from './api';
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return instance.get<any, AxiosResponse<ProfileType>>(`profile/${userId}`).then(response => response.data)
+        return instance.get<any, AxiosResponse<ProfileType>>(`profile/${userId}`)
+            .then(response => response.data)
     },
     getStatus(userId: number) {
-        return instance.get<any, AxiosResponse<string>>(`profile/status/${userId}`).then(response => response.data)
+        return instance.get<any, AxiosResponse<string>>(`profile/status/${userId}`)
+            .then(response => response.data)
     },
     updateStatus(status: string) {
-        return instance.put<any, AxiosResponse<ResponseType>, UpdateStatusPayloadType>(`profile/status`, {status}).then(response => response.data)
+        return instance.put<any, AxiosResponse<ResponseType>, UpdateStatusPayloadType>(`profile/status`, {status})
+            .then(response => response.data)
     },
     savePhoto(file: string | Blob) {
         const formData = new FormData()
@@ -21,7 +24,8 @@ export const profileAPI = {
         }).then(response => response.data)
     },
     saveProfile(profile: ProfileDataFormPropsType) {
-        return instance.put<any, AxiosResponse<ResponseType>, ProfileDataFormPropsType>(`profile`, profile).then(response => response.data)
+        return instance.put<any, AxiosResponse<ResponseType>, ProfileDataFormPropsType>(`profile`, profile)
+            .then(response => response.data)
     }
 }
 
