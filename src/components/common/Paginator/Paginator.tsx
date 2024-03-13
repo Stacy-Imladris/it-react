@@ -1,15 +1,14 @@
 import s from './Paginator.module.scss';
 import {getPages} from 'utils/getPages';
 
-type PaginatorPropsType = {
+type Props = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
 }
 
-export const Paginator = ({currentPage, onPageChanged, totalUsersCount, pageSize
-                          }: PaginatorPropsType) => {
+export const Paginator = ({currentPage, onPageChanged, totalUsersCount, pageSize}: Props) => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
 
     const pages = []
