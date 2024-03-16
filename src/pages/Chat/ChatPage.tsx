@@ -7,11 +7,7 @@ export type ChatMessageType = {
     userName: string
 }
 
-const ChatPage: FC = () => {
-    return <div>
-        <Chat/>
-    </div>
-}
+const ChatPage: FC = () => <div><Chat/></div>
 
 export const Chat: FC = () => {
     const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
