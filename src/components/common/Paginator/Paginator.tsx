@@ -18,6 +18,8 @@ export const Paginator = ({currentPage, onPageChanged, totalUsersCount, pageSize
 
     const pagesForRender = getPages(pages, currentPage, pagesCount)
 
+    const dots = <span>...</span>
+
     return (
         <div className={s.paginatorContainer}>
             <div className={s.container}>
@@ -30,7 +32,7 @@ export const Paginator = ({currentPage, onPageChanged, totalUsersCount, pageSize
                             <button className={currentPage === 1 ? s.selectedPage : ''}
                                     onClick={() => onPageChanged(1)}> 1
                             </button>
-                            <span>...</span>
+                            {dots}
                         </>
                     )}
                 </div>
@@ -42,7 +44,7 @@ export const Paginator = ({currentPage, onPageChanged, totalUsersCount, pageSize
                 <div className={s.edge}>
                     {currentPage < pages.length - 2 && pagesCount > 5 && (
                         <>
-                            <span>...</span>
+                            {dots}
                             <button
                                 className={currentPage === pages.length ? s.selectedPage : ''}
                                 onClick={() => onPageChanged(pages.length)}>
