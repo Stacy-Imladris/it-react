@@ -3,14 +3,14 @@ import userPhoto from 'assets/images/user.png';
 import {NavLink} from 'react-router-dom';
 import {UserType} from 'api/users-api';
 
-type UserPropsType = {
+type Props = {
     user: UserType
     followingInProgress: number[]
     follow: (userId: number) => void
     unfollow: (userId: number) => void
 }
 
-export const User = ({user, followingInProgress, follow, unfollow}: UserPropsType) => (
+export const User = ({user, followingInProgress, follow, unfollow}: Props) => (
     <div>
         <div>
             <NavLink to={'/profile/' + user.id}>
