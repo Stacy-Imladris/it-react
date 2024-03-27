@@ -1,12 +1,12 @@
 import s from './ProfileData.module.scss';
 import {ProfileType} from 'api/profile-api';
 
-type ProfileDataPropsType = {
+type Props = {
     profile: ProfileType
     setEditMode: (isEditMode: boolean) => void
 }
 
-export const ProfileData = ({profile, setEditMode}: ProfileDataPropsType) => {
+export const ProfileData = ({profile, setEditMode}: Props) => {
     const {contacts, fullName, aboutMe, lookingForAJob, lookingForAJobDescription} = profile
     const contactsValues = Object.values(contacts || {})
 
