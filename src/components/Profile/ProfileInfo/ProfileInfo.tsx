@@ -8,7 +8,7 @@ import {ProfileDataFormPropsType, ProfileDataReduxForm} from './ProfileDataForm/
 import {ProfileStatusWithHooks} from './ProfileData/ProfileStatus/ProfileStatusWithHooks';
 import {ProfileType} from 'api/profile-api';
 
-type ProfileInfoPropsType = {
+type Props = {
     profile: null | ProfileType
     status: string
     updateStatus: (status: string) => AppThunk
@@ -19,9 +19,9 @@ type ProfileInfoPropsType = {
     setEditMode: (isEditMode: boolean) => void
 }
 
-export const ProfileInfo = ({profile, status, updateStatus, savePhoto, saveProfile,
-                                isOwner, isEditMode, setEditMode,
-                            }: ProfileInfoPropsType) => {
+export const ProfileInfo = (
+    {profile, status, updateStatus, savePhoto, saveProfile, isOwner, isEditMode, setEditMode}: Props
+) => {
     if (!profile) return <Preloader/>
 
     const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
