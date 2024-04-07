@@ -46,7 +46,6 @@ export const Users = () => {
                 actualFilter = {...actualFilter, friend: false}
                 break
         }
-        //if (!!parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true' as string}
 
         dispatch(requestUsers(actualPage, pageSize, actualFilter))
     }, [dispatch])
