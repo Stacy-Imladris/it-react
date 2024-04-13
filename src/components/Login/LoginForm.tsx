@@ -13,8 +13,7 @@ export type LoginFormDataType = {
 const LoginForm: FC<InjectedFormProps<LoginFormDataType>> = ({error, handleSubmit}) => (
     <form onSubmit={handleSubmit}>
         <div>
-            <Field placeholder={'Email'} name={'email'} component={Input}
-                   validate={[required]}/>
+            <Field placeholder={'Email'} name={'email'} component={Input} validate={[required]}/>
         </div>
         <div>
             <Field placeholder={'Password'} name={'password'} type={'password'}
